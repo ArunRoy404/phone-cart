@@ -5,7 +5,8 @@ import Phones from './components/Phones/Phones'
 import { ErrorBoundary } from "react-error-boundary"
 import CartDrawer from './components/CartDrawer/CartDrawer'
 
-const url = '../public/phone.json'
+// const url = '../public/phone.json'
+const url = 'https://raw.githubusercontent.com/ArunRoy404/phone-cart/refs/heads/main/public/phone.json'
 const fetchPhonesPromise = async () => {
   const fetchPromise = await fetch(url)
   return fetchPromise.json()
