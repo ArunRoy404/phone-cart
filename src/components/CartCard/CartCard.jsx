@@ -5,7 +5,7 @@ const CartCard = ({ phone, quantity , handleRemoveFromCart}) => {
         <div className='border-b p-3 flex justify-between'>
             <div className='flex gap-3'>
                 <div className='bg-slate-200 h-[100px] w-[100px] rounded-xl flex justify-center items-center'>
-                    <img className='h-[80px]' src={phone.img_url} alt="" />
+                    <img className='h-[80px] mix-blend-darken' src={phone.img_url} alt="" />
                 </div>
                 <div className='flex flex-col justify-between'>
                     <div>
