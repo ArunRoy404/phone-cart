@@ -22,9 +22,8 @@ function App() {
     for(let i=0; i<cart.length; i++){
       const [p, quantity] = cart[i]
       if(p.id==phone.id){
-
         newCart = cart.splice(i,1)[0]
-
+        newCart[1]++
       }
     }
     setCart([...cart, newCart])
