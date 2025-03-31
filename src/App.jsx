@@ -17,9 +17,19 @@ function App() {
   const [cart, setCart] = useState([])
   
   const handleAddToCart = (phone)=>{
-    setCart([...cart, phone])
+    const newCart = [phone, 1]
+
+    let isUpdated = false
+    for(let i=0; i<cart.length; i++){
+      const [p, quantity] = cart[i]
+      if(p.id==phone.id){
+        cart[i][1] ++
+        isUpdated = true
+        setCart([...cart])
+      }
+    }
+    if(!isUpdated) setCart([...cart, newCart])
   }
-  
   
   return (
     <>

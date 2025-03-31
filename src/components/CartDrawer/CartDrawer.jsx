@@ -2,6 +2,7 @@ import React from 'react';
 import CartCard from '../CartCard/CartCard';
 
 const CartDrawer = ({ cart }) => {
+    console.log(cart)
     return (
         <div>
             <div className="drawer drawer-end">
@@ -22,9 +23,9 @@ const CartDrawer = ({ cart }) => {
                             <h1 className='text-3xl font-bold'>cart</h1>
                             <button className='btn rounded-md bg-[#EE8E00] text-white font-bold'>Clear</button>
                         </div>
-                        <div>
+                        <div className='flex flex-col-reverse'>
                             {
-                                cart.map(phone=> <CartCard key={phone.id} phone={phone}></CartCard>)
+                                cart.map(([phone,quantity])=> <CartCard key={phone.id} quantity={quantity} phone={phone}></CartCard>)
                             }
                         </div>
                     </div>
