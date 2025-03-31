@@ -1,8 +1,7 @@
 import React from 'react';
-const Phone = ({ phone }) => {
+const Phone = ({ phone, handleAddToCart}) => {
     return (
-        <div className='p-4 bg-white rounded-2xl drop-shadow-xl flex flex-col justify-between'>
-
+        <div className='p-4 w-[250px] md:w-auto bg-white rounded-2xl drop-shadow-xl flex flex-col justify-between'>
             <div>
                 <div className='bg-slate-200 h-[170px] rounded-xl flex justify-center items-center'>
                     <img className='h-[150px] mix-blend-darken' src={phone.img_url} alt="" />
@@ -16,9 +15,8 @@ const Phone = ({ phone }) => {
             </div>
 
             <div className='mt-4 text-center'>
-                <button className='w-full btn bg-[#EE8E00] font-bold text-white'>Add to Cart </button>
+                <button onClick={()=>{handleAddToCart(phone)}} className='w-full btn bg-[#EE8E00] font-bold text-white'>Add to Cart </button>
             </div>
-
         </div>
     );
 };
