@@ -5,6 +5,7 @@ import Phones from './components/Phones/Phones'
 import { ErrorBoundary } from "react-error-boundary"
 import CartDrawer from './components/CartDrawer/CartDrawer'
 import { getCartFromLocalStorage } from './utilities/localStorageCart'
+import PhonesLoading from './components/PhonesLoading/PhonesLoading'
 
 // const url = '../public/phone.json'
 const url = 'https://raw.githubusercontent.com/ArunRoy404/phone-cart/refs/heads/main/public/phone.json'
@@ -64,7 +65,7 @@ function App() {
 
       <div className='w-[80%] mx-auto mt-10 pb-10'>
         <ErrorBoundary fallback={<h1 className='text-3xl font-bold'>Something Went Wrong</h1>}>
-          <Suspense fallback={<div className='text-center'><span className="loading loading-dots loading-xl"></span></div>}>
+          <Suspense fallback={<PhonesLoading></PhonesLoading>}>
             <Phones 
             fetchPhones={fetchPhones} 
             handleAddToCart={handleAddToCart}
