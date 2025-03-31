@@ -27,16 +27,20 @@ function App() {
 
       }
     }
-    console.log(newCart)
     setCart([...cart, newCart])
+  }
+
+  const handleRemoveFromCart = (id) =>{
+    const newCart = cart.filter(([phone,quantity]) => phone.id!==id)
+    setCart([...newCart])
   }
   
   return (
     <>
       <div className='bg-[#633AE4] py-9'>
-        <div className='w-[80%] mx-auto flex justify-between items-center'>
+        <div className='w-[80%] mx-auto space-y-5 md:flex justify-between items-center'>
           <h1 className='text-white text-3xl font-bold'>Shop Your Favorite Phone</h1>
-          <CartDrawer cart={cart} ></CartDrawer>
+          <CartDrawer handleRemoveFromCart={handleRemoveFromCart} cart={cart} ></CartDrawer>
         </div>
       </div>
       

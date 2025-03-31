@@ -1,8 +1,7 @@
 import React from 'react';
 import CartCard from '../CartCard/CartCard';
 
-const CartDrawer = ({ cart }) => {
-    console.log(cart)
+const CartDrawer = ({ cart, handleRemoveFromCart }) => {
     return (
         <div>
             <div className="drawer drawer-end">
@@ -25,7 +24,12 @@ const CartDrawer = ({ cart }) => {
                         </div>
                         <div className='flex flex-col-reverse'>
                             {
-                                cart.map(([phone,quantity])=> <CartCard key={phone.id} quantity={quantity} phone={phone}></CartCard>)
+                                cart.map(([phone, quantity]) => <CartCard
+                                    key={phone.id}
+                                    quantity={quantity}
+                                    handleRemoveFromCart={handleRemoveFromCart}
+                                    phone={phone}>
+                                </CartCard>)
                             }
                         </div>
                     </div>
