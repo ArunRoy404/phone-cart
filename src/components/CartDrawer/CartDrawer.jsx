@@ -1,7 +1,17 @@
 import React from 'react';
 import CartCard from '../CartCard/CartCard';
-
+import { addCartToLocalStorage } from '../../utilities/localStorageCart';
 const CartDrawer = ({ cart, handleRemoveFromCart, handleClearCart }) => {
+
+    const saveCart = () => {
+        let cartInfo = []
+        cart.forEach(([p, c]) => {
+            cartInfo.push({'id':p.id, 'quantity':c})
+        })
+        addCartToLocalStorage(cartInfo)
+    }
+    saveCart()
+
     return (
         <div>
             <div className="drawer drawer-end">
@@ -20,7 +30,7 @@ const CartDrawer = ({ cart, handleRemoveFromCart, handleClearCart }) => {
                     <div className="menu bg-base-200 text-base-content min-h-full w-96 p-4 pr-8 border">
                         <div className='flex justify-between items-center'>
                             <h1 className='text-3xl font-bold'>cart</h1>
-                            <button onClick={()=>{handleClearCart()}} className='btn rounded-md bg-[#EE8E00] text-white font-bold'>Clear</button>
+                            <button onClick={() => { handleClearCart() }} className='btn rounded-md bg-[#EE8E00] text-white font-bold'>Clear</button>
                         </div>
                         <div className='flex flex-col-reverse'>
                             {
@@ -29,7 +39,7 @@ const CartDrawer = ({ cart, handleRemoveFromCart, handleClearCart }) => {
                                     quantity={quantity}
                                     handleRemoveFromCart={handleRemoveFromCart}
                                     phone={phone}
-                                    >
+                                >
                                 </CartCard>)
                             }
                         </div>

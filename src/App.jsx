@@ -29,6 +29,7 @@ function App() {
     }
     setCart([...cart, newCart])
   }
+  
 
   const handleRemoveFromCart = (id) => {
     const newCart = cart.filter(([phone, quantity]) => phone.id !== id)
@@ -39,16 +40,21 @@ function App() {
     setCart([])
   }
 
+
+  const handleLoadCart = (cart) => {
+    setCart(cart)
+  }
+
   return (
     <>
       <div className='bg-[#633AE4] py-9'>
         <div className='w-[80%] mx-auto space-y-5 md:flex justify-between items-center'>
           <h1 className='text-white text-3xl font-bold'>Shop Your Favorite Phone</h1>
           <CartDrawer
-              handleRemoveFromCart={handleRemoveFromCart}
-              cart={cart} 
-              handleClearCart={handleClearCart}
-              >
+            handleRemoveFromCart={handleRemoveFromCart}
+            cart={cart}
+            handleClearCart={handleClearCart}
+          >
           </CartDrawer>
         </div>
       </div>
@@ -57,7 +63,11 @@ function App() {
       <div className='w-[80%] mx-auto mt-10 pb-10'>
         <ErrorBoundary fallback={<h1 className='text-3xl font-bold'>Something Went Wrong</h1>}>
           <Suspense fallback={<div className='text-center'><span className="loading loading-dots loading-xl"></span></div>}>
-            <Phones fetchPhones={fetchPhones} handleAddToCart={handleAddToCart}></Phones>
+            <Phones 
+            fetchPhones={fetchPhones} 
+            handleAddToCart={handleAddToCart}
+            handleLoadCart={handleLoadCart}
+            ></Phones>
           </Suspense>
         </ErrorBoundary>
       </div>

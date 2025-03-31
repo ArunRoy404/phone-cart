@@ -15,7 +15,7 @@ const Phone = ({ phone, handleAddToCart}) => {
             </div>
 
             <div className='mt-4 text-center'>
-                <button onClick={()=>{handleAddToCart(phone)}} className='w-full btn bg-[#EE8E00] font-bold text-white'>Add to Cart </button>
+                <button onClick={()=>{handleAddToCart(phone)}} className='w-full btn bg-[#EE8E00] font-bold text-white'>Add to Cart</button>
             </div>
         </div>
     );
