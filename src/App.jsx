@@ -4,6 +4,7 @@ import './App.css'
 import Phones from './components/Phones/Phones'
 import { ErrorBoundary } from "react-error-boundary"
 import CartDrawer from './components/CartDrawer/CartDrawer'
+import { getCartFromLocalStorage } from './utilities/localStorageCart'
 
 // const url = '../public/phone.json'
 const url = 'https://raw.githubusercontent.com/ArunRoy404/phone-cart/refs/heads/main/public/phone.json'
@@ -14,12 +15,13 @@ const fetchPhonesPromise = async () => {
 
 const fetchPhones = fetchPhonesPromise()
 
+const cartData = getCartFromLocalStorage()
+
 function App() {
   const [cart, setCart] = useState([])
 
   const handleAddToCart = (phone) => {
     let newCart = [phone, 1]
-
     for (let i = 0; i < cart.length; i++) {
       const [p, quantity] = cart[i]
       if (p.id == phone.id) {
@@ -67,6 +69,7 @@ function App() {
             fetchPhones={fetchPhones} 
             handleAddToCart={handleAddToCart}
             handleLoadCart={handleLoadCart}
+            cartData={cartData}
             ></Phones>
           </Suspense>
         </ErrorBoundary>
