@@ -1,5 +1,5 @@
 
-import { Suspense, useEffect, useState} from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import './App.css'
 import Phones from './components/Phones/Phones'
 import { ErrorBoundary } from "react-error-boundary"
@@ -15,34 +15,43 @@ const fetchPhones = fetchPhonesPromise()
 
 function App() {
   const [cart, setCart] = useState([])
-  
-  const handleAddToCart = (phone)=>{
+
+  const handleAddToCart = (phone) => {
     let newCart = [phone, 1]
 
-    for(let i=0; i<cart.length; i++){
+    for (let i = 0; i < cart.length; i++) {
       const [p, quantity] = cart[i]
-      if(p.id==phone.id){
-        newCart = cart.splice(i,1)[0]
+      if (p.id == phone.id) {
+        newCart = cart.splice(i, 1)[0]
         newCart[1]++
       }
     }
     setCart([...cart, newCart])
   }
 
-  const handleRemoveFromCart = (id) =>{
-    const newCart = cart.filter(([phone,quantity]) => phone.id!==id)
+  const handleRemoveFromCart = (id) => {
+    const newCart = cart.filter(([phone, quantity]) => phone.id !== id)
     setCart([...newCart])
   }
-  
+
+  const handleClearCart = () => {
+    setCart([])
+  }
+
   return (
     <>
       <div className='bg-[#633AE4] py-9'>
         <div className='w-[80%] mx-auto space-y-5 md:flex justify-between items-center'>
           <h1 className='text-white text-3xl font-bold'>Shop Your Favorite Phone</h1>
-          <CartDrawer handleRemoveFromCart={handleRemoveFromCart} cart={cart} ></CartDrawer>
+          <CartDrawer
+              handleRemoveFromCart={handleRemoveFromCart}
+              cart={cart} 
+              handleClearCart={handleClearCart}
+              >
+          </CartDrawer>
         </div>
       </div>
-      
+
 
       <div className='w-[80%] mx-auto mt-10 pb-10'>
         <ErrorBoundary fallback={<h1 className='text-3xl font-bold'>Something Went Wrong</h1>}>
