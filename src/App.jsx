@@ -1,10 +1,9 @@
 
-import { Suspense, useEffect, useState } from 'react'
+import { Suspense} from 'react'
 import './App.css'
 import Phones from './components/Phones/Phones'
 import { ErrorBoundary } from "react-error-boundary"
 import CartDrawer from './components/CartDrawer/CartDrawer'
-import { getCartFromLocalStorage } from './utilities/localStorageCart'
 import PhonesLoading from './components/PhonesLoading/PhonesLoading'
 
 // const url = '../public/phone.json'
@@ -14,39 +13,11 @@ const fetchPhonesPromise = async () => {
   return fetchPromise.json()
 }
 
-const fetchPhones = fetchPhonesPromise()
-
-const cartData = getCartFromLocalStorage()
 
 function App() {
-  const [cart, setCart] = useState([])
 
-  const handleAddToCart = (phone) => {
-    let newCart = [phone, 1]
-    for (let i = 0; i < cart.length; i++) {
-      const [p, quantity] = cart[i]
-      if (p.id == phone.id) {
-        newCart = cart.splice(i, 1)[0]
-        newCart[1]++
-      }
-    }
-    setCart([...cart, newCart])
-  }
-
-
-  const handleRemoveFromCart = (id) => {
-    const newCart = cart.filter(([phone, quantity]) => phone.id !== id)
-    setCart([...newCart])
-  }
-
-  const handleClearCart = () => {
-    setCart([])
-  }
-
-
-  const handleLoadCart = (cart) => {
-    setCart(cart)
-  }
+  const fetchPhones = fetchPhonesPromise()
+  console.log(fetchPhones)
 
   return (
     <>
@@ -54,12 +25,7 @@ function App() {
         <div className='bg-[#633AE4CC] backdrop-blur-2xl py-9 sticky top-0 z-5 drop-shadow-xl'>
           <div className='w-[80%] mx-auto space-y-5 md:flex justify-between items-center'>
             <h1 className='text-white text-3xl font-bold'>Shop Your Favorite Phone</h1>
-            <CartDrawer
-              handleRemoveFromCart={handleRemoveFromCart}
-              cart={cart}
-              handleClearCart={handleClearCart}
-            >
-            </CartDrawer>
+            <CartDrawer></CartDrawer>
           </div>
         </div>
 
@@ -68,10 +34,7 @@ function App() {
           <ErrorBoundary fallback={<h1 className='text-3xl font-bold'>Something Went Wrong</h1>}>
             <Suspense fallback={<PhonesLoading></PhonesLoading>}>
               <Phones
-                fetchPhones={fetchPhones}
-                handleAddToCart={handleAddToCart}
-                handleLoadCart={handleLoadCart}
-                cartData={cartData}
+                fetchPhones={fetchPhones} 
               ></Phones>
             </Suspense>
           </ErrorBoundary>

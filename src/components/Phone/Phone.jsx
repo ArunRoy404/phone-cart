@@ -1,5 +1,5 @@
 import React from 'react';
-const Phone = ({ phone, handleAddToCart}) => {
+const Phone = ({ phone}) => {
     return (
         <div className='p-4 w-[250px] md:w-auto bg-white rounded-2xl drop-shadow-xl flex flex-col justify-between'>
             <div>
@@ -15,7 +15,7 @@ const Phone = ({ phone, handleAddToCart}) => {
             </div>
 
             <div className='mt-4 text-center'>
-                <button onClick={()=>{handleAddToCart(phone)}} className='w-full btn bg-[#EE8E00] font-bold text-white'>Add to Cart</button>
+                <button className='w-full btn bg-[#EE8E00] font-bold text-white'>Add to Cart</button>
             </div>
         </div>
     );
