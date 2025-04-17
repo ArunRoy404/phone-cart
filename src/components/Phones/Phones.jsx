@@ -1,7 +1,7 @@
 import React, { use} from 'react';
 import Phone from '../Phone/Phone';
 
-const Phones = ({ fetchPhones}) => {
+const Phones = ({ fetchPhones, handleAddToCart}) => {
     const phones = use(fetchPhones).mobile
 
     return (
@@ -10,6 +10,7 @@ const Phones = ({ fetchPhones}) => {
                 phones.map(phone => <Phone
                     key={phone.id}
                     phone={phone}
+                    handleAddToCart={handleAddToCart}
                 ></Phone>)
             }
         </div>

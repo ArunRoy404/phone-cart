@@ -1,5 +1,5 @@
 
-import { Suspense} from 'react'
+import { Suspense, useState } from 'react'
 import './App.css'
 import Phones from './components/Phones/Phones'
 import { ErrorBoundary } from "react-error-boundary"
@@ -13,11 +13,32 @@ const fetchPhonesPromise = async () => {
   return fetchPromise.json()
 }
 
+// this fetchPhones function should call outside 
+// cause the useState triggers the App function every time 
+// and the fetchPhone get calls every time
+const fetchPhones = fetchPhonesPromise()
+
+
 
 function App() {
+  const [cart, setCart] = useState([])
 
-  const fetchPhones = fetchPhonesPromise()
-  console.log(fetchPhones)
+  const handleAddToCart = (item) => {
+    let newItem = { ...item }
+
+    // if the same item exist 
+    const oldItemIndex = cart.findIndex(oldItem => oldItem.id == item.id)
+
+    
+    if (oldItemIndex >= 0) {
+      newItem = cart.splice(oldItemIndex, 1)[0] //0 for the obj. cause splice returns an array
+      newItem.quantity++
+    }else{
+      newItem.quantity = 1
+    }
+
+    setCart([...cart, newItem])
+  }
 
   return (
     <>
@@ -25,7 +46,8 @@ function App() {
         <div className='bg-[#633AE4CC] backdrop-blur-2xl py-9 sticky top-0 z-5 drop-shadow-xl'>
           <div className='w-[80%] mx-auto space-y-5 md:flex justify-between items-center'>
             <h1 className='text-white text-3xl font-bold'>Shop Your Favorite Phone</h1>
-            <CartDrawer></CartDrawer>
+            <CartDrawer cart={cart}
+            ></CartDrawer>
           </div>
         </div>
 
@@ -34,7 +56,8 @@ function App() {
           <ErrorBoundary fallback={<h1 className='text-3xl font-bold'>Something Went Wrong</h1>}>
             <Suspense fallback={<PhonesLoading></PhonesLoading>}>
               <Phones
-                fetchPhones={fetchPhones} 
+                fetchPhones={fetchPhones}
+                handleAddToCart={handleAddToCart}
               ></Phones>
             </Suspense>
           </ErrorBoundary>

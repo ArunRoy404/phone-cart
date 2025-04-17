@@ -1,21 +1,21 @@
 import React from 'react';
 
-const CartCard = () => {
+const CartCard = ({item}) => {
     return (
         <div className='border-b p-3 flex justify-between'>
             <div className='flex gap-3'>
                 <div className='bg-slate-200 h-[100px] w-[100px] rounded-xl flex justify-center items-center'>
-                    <img className='h-[80px] mix-blend-darken' alt="" />
+                    <img className='h-[80px] mix-blend-darken' src={item.img_url} alt="" />
                 </div>
                 <div className='flex flex-col justify-between'>
                     <div>
-                        <h2 className='font-bold'>Model: </h2>
-                        <h3 className='text-sm'>Brand: </h3>
+                        <h2 className='font-bold'>Model: {item.model}</h2>
+                        <h3 className='text-sm'>Brand: {item.brand}</h3>
                     </div>
 
                     <div>
-                        <h3 className='text-sm font-bold'>Quantity: 0</h3>
-                        <h3 className='text-lg font-bold'>Price: $0</h3>
+                        <h3 className='text-sm font-bold'>Quantity: {item.quantity}</h3>
+                        <h3 className='text-lg font-bold'>Price: ${item.approx_price_EUR*item.quantity}</h3>
                     </div>
                 </div>
             </div>
