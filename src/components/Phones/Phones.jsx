@@ -9,7 +9,7 @@ const Phones = ({ fetchPhones, handleAddToCart, handleAddStoredCart}) => {
         const cart = []
 
         const storedCart = getStoredCart()
-        console.log(storedCart);
+
         storedCart.forEach(([id, quantity])=> {
             phones.forEach(phone=> {
                 if(phone.id===id){

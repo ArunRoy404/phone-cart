@@ -33,6 +33,6 @@ export {
     getCartFromLocalStorage as getStoredCart,
     addItemToLocalStorage as addIdToStoredCart,
     removeItemFromLocalStorage as removeFromStoredCart,
-    removeCartFromLocalStorage as deleteStoredCart
+    removeCartFromLocalStorage as clearStoredCart
 }
 

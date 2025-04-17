@@ -1,7 +1,7 @@
 import React from 'react';
 import CartCard from '../CartCard/CartCard';
 
-const CartDrawer = ({ cart, handleRemoveFromCart }) => {
+const CartDrawer = ({ cart, handleRemoveFromCart, handleClearCart}) => {
 
     return (
         <div>
@@ -21,7 +21,7 @@ const CartDrawer = ({ cart, handleRemoveFromCart }) => {
                     <div className="relative menu bg-base-200 text-base-content min-h-full w-96 p-4 pr-8 border">
                         <div className='sticky top-0 bg-white px-6  py-4 z-20 rounded=xl flex justify-between items-center'>
                             <h1 className='text-3xl font-bold'>cart</h1>
-                            <button className='btn rounded-md bg-[#EE8E00] text-white font-bold'>Clear</button>
+                            <button onClick={handleClearCart} className='btn rounded-md bg-[#EE8E00] text-white font-bold'>Clear</button>
                         </div>
                         <div className='flex flex-col-reverse'>
                             {
