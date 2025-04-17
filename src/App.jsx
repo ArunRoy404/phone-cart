@@ -5,7 +5,7 @@ import Phones from './components/Phones/Phones'
 import { ErrorBoundary } from "react-error-boundary"
 import CartDrawer from './components/CartDrawer/CartDrawer'
 import PhonesLoading from './components/PhonesLoading/PhonesLoading'
-import { addIdToStoredCart, clearStoredCart } from './utilities/localStorageCart'
+import { addIdToStoredCart, clearStoredCart, removeFromStoredCart } from './utilities/localStorageCart'
 
 // const url = '../public/phone.json'
 const url = 'https://raw.githubusercontent.com/ArunRoy404/phone-cart/refs/heads/main/public/phone.json'
@@ -45,6 +45,7 @@ function App() {
   const handleRemoveFromCart = itemId => {
     const newCart = cart.filter(oldItem => oldItem.id !== itemId)
     setCart(newCart)
+    removeFromStoredCart(itemId)
   }
 
   const handleAddStoredCart =(cart) =>{
