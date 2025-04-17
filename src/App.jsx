@@ -27,17 +27,22 @@ function App() {
     let newItem = { ...item }
 
     // if the same item exist 
-    const oldItemIndex = cart.findIndex(oldItem => oldItem.id == item.id)
+    const oldItemIndex = cart.findIndex(oldItem => oldItem.id == newItem.id)
 
-    
+    // if found increase quantity 
     if (oldItemIndex >= 0) {
       newItem = cart.splice(oldItemIndex, 1)[0] //0 for the obj. cause splice returns an array
       newItem.quantity++
-    }else{
+    } else {
       newItem.quantity = 1
     }
 
     setCart([...cart, newItem])
+  }
+
+  const handleRemoveFromCart = itemId => {
+    const newCart = cart.filter(oldItem=> oldItem.id!==itemId)
+    setCart(newCart)
   }
 
   return (
@@ -47,6 +52,7 @@ function App() {
           <div className='w-[80%] mx-auto space-y-5 md:flex justify-between items-center'>
             <h1 className='text-white text-3xl font-bold'>Shop Your Favorite Phone</h1>
             <CartDrawer cart={cart}
+              handleRemoveFromCart={handleRemoveFromCart}
             ></CartDrawer>
           </div>
         </div>
