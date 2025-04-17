@@ -47,9 +47,9 @@ function App() {
     setCart(newCart)
   }
 
-  // const handleAddStoredCart =(cart) =>{
-  //   setCart(cart)
-  // }
+  const handleAddStoredCart =(cart) =>{
+    setCart(cart)
+  }
 
 
   return (
@@ -60,7 +60,6 @@ function App() {
             <h1 className='text-white text-3xl font-bold'>Shop Your Favorite Phone</h1>
             <CartDrawer cart={cart}
               handleRemoveFromCart={handleRemoveFromCart}
-              // handleAddStoredCart={handleAddStoredCart}
             ></CartDrawer>
           </div>
         </div>
@@ -72,6 +71,7 @@ function App() {
               <Phones
                 fetchPhones={fetchPhones}
                 handleAddToCart={handleAddToCart}
+                handleAddStoredCart={handleAddStoredCart}
               ></Phones>
             </Suspense>
           </ErrorBoundary>
